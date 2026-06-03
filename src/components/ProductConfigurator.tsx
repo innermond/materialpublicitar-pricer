@@ -2,11 +2,16 @@ import { PRODUCTS } from "../data/products";
 import { v4 as uuid } from "uuid";
 import QuantitySelector from "./QuantitySelector";
 import SizeSelector from "./SizeSelector";
+import PaperSelector from "./PaperSelector";
+import { getPaperById } from "../data/papers";
+import type { Paper } from "../data/papers";
 
 export default function ProductConfigurator({ store }: any) {
   const active = store.activeItem;
 
   const productKeys = Object.keys(PRODUCTS);
+
+  const productPaper: Paper = getPaperById(active?.productId);
 
   const applyDefaults = (key: string) => {
     const p = PRODUCTS[key as keyof typeof PRODUCTS];
@@ -55,6 +60,7 @@ export default function ProductConfigurator({ store }: any) {
           </h2>
 
           <SizeSelector
+            productKey={active.product}
             value={active.size}
             onChange={(val) =>
               updateActive({ size: val })
@@ -68,13 +74,14 @@ export default function ProductConfigurator({ store }: any) {
             }
           />
 
-          <input
-            className="w-full rounded border p-2"
-            value={active.paper}
-            onChange={(e) =>
-              updateActive({ paper: e.target.value })
+          <PaperSelector
+            productKey={active.product}
+            value={active.paperId}
+            onChange={(val: Paper) =>
+              updateActive({ paperId: val })
             }
           />
+
         </div>
       )}
 

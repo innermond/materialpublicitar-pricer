@@ -1,15 +1,22 @@
 import type { SizeValue } from "../../types/size";
-import { SIZE_PRESETS } from "../../data/presets";
+import { SIZE_PRESETS, getPresetByName } from "../../data/presets";
+import  { PRODUCT_SIZE_RULES } from "../../data/productSizeRules";
+import { getProductSizeRule } from "../../data/productSizeRules";
+import type { Product } from "../../data/products";
 
 type Props = {
+  productKey: Product['id'];
   value: SizeValue | null;
   onSelect: (preset: SizeValue) => void;
 };
 
-export default function SizePresets({ value, onSelect }: Props) {
+export default function SizePresets({ productKey, value, onSelect }: Props) {
+  
+  const presets: SizeValue[] = getProductSizeRule(productKey)?.allowedPresets?.map((sn: string) => getPresetByName(sn)) ?? SIZE_PRESETS;
+
   return (
     <div className="flex flex-wrap gap-2">
-      {SIZE_PRESETS.map((p) => {
+      {presets.map((p) => {
         const active = value?.name === p.name;
 
         return (

@@ -21,6 +21,7 @@ function getPopularityMultiplier(quantity: number) {
 }
 
 export function calculateItemPrice(item: QuoteItem): number {
+  return 0.0
   const basePaperCost = item.quantity * 0.02;
 
   let total = basePaperCost;

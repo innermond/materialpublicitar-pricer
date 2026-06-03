@@ -58,6 +58,7 @@ type Props = {
 };
 
 export default function SizeSelector({
+  productKey,
   value,
   onChange,
 }: Props) {
@@ -155,6 +156,7 @@ export default function SizeSelector({
 
       {/* PRESET SELECTION (A6 / A5 / A4 / A3) */}
       <SizeValues
+        productKey={productKey}
         value={activePreset}
         onSelect={handlePreset}
       />

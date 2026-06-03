@@ -1,11 +1,22 @@
-export const PRODUCTS = {
+import type { ProductsMap } from "../types/product";
+
+export const PRODUCTS: ProductsMap = {
   flyer: {
+    productId: "flyer",
     name: "Flyer",
     defaults: {
-      size: { name: "A6", width: 105, height: 148, unit: 'mm' },
-      paper: "170gsm Gloss",
+      size: {
+        name: "A6",
+        width: 105,
+        height: 148,
+        unit: "mm",
+      },
+
+      paperId: "170-gloss",
+
       printMode: "4/4",
       quantity: 1000,
+
       finishing: {
         lamination: {
           enabled: false,
@@ -24,12 +35,21 @@ export const PRODUCTS = {
   },
 
   brochure: {
+    productId: "brochure",
     name: "Brochure",
     defaults: {
-      size: { name: "A4", width: 210, height: 297, unit: 'mm' },
-      paper: "170gsm Silk",
+      size: {
+        name: "A4",
+        width: 210,
+        height: 297,
+        unit: "mm",
+      },
+
+      paperId: "170-silk",
+
       printMode: "4/4",
       quantity: 500,
+
       finishing: {
         lamination: {
           enabled: true,
@@ -48,12 +68,21 @@ export const PRODUCTS = {
   },
 
   businessCard: {
+    productId: "businessCard",
     name: "Business Card",
     defaults: {
-      size: { name: "custom size", width: 90, height: 50, unit: 'mm' },
-      paper: "350gsm Matt",
+      size: {
+        name: "custom size",
+        width: 90,
+        height: 50,
+        unit: "mm",
+      },
+
+      paperId: "350-softtouch",
+
       printMode: "4/4",
       quantity: 500,
+
       finishing: {
         lamination: {
           enabled: true,
@@ -70,4 +99,4 @@ export const PRODUCTS = {
       },
     },
   },
-} as const;
+};

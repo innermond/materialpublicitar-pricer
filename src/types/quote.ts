@@ -1,3 +1,5 @@
+import type { Paper } from "../data/papers";
+"
 export type Lamination = {
   enabled: boolean;
   sides: "front" | "back" | "both";
@@ -24,7 +26,7 @@ export type QuoteItem = {
 
   product: string;
   size: string;
-  paper: string;
+  paperId: Paper['id'];
   printMode: string;
   quantity: number;
 
