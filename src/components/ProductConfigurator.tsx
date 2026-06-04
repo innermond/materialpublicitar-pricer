@@ -92,6 +92,7 @@ export default function ProductConfigurator({ store }) {
           />
 
           <FinishingSelector
+            productKey={active.productId}
             paper={paper}
             value={active.finishing}
             onChange={(finishing) =>

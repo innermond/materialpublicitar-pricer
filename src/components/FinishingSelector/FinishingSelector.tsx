@@ -8,9 +8,11 @@ import type {
 import LaminationSection from "./LaminationSection";
 import FoldingSection from "./FoldingSection";
 import CreasingSection from "./CreasingSection";
-import type {Paper} from "../../data/papers";
+import type { Paper } from "../../data/papers";
+import type { Product } from "../../types/product";
 
 type Props = {
+  productKey: Product['productId'];
   paper: Paper;
   value: FinishingValue;
 
@@ -20,6 +22,7 @@ type Props = {
 };
 
 export default function FinishingSelector({
+  productKey,
   paper,
   value,
   onChange,
@@ -80,6 +83,7 @@ export default function FinishingSelector({
       />
 
       <FoldingSection
+        productId={productKey}
         type={value.folding.type}
         folds={
           value.folding.folds

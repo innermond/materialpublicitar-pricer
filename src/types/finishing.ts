@@ -14,7 +14,8 @@ export type FoldingType =
   | "half-fold"
   | "tri-fold"
   | "z-fold"
-  | "gate-fold";
+  | "gate-fold"
+  | "custom";
 
 export type FinishingValue = {
   lamination: {

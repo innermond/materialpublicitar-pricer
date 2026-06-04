@@ -1,4 +1,5 @@
 import type { Paper } from "./papers";
+import type { Product } from "../types/product";
 
 /**
  * Core finishing types supported by the system.
@@ -12,13 +13,17 @@ export type LaminationSide = "front" | "back" | "both";
 export type LaminationType = "gloss" | "matt" | "soft-touch";
 
 export type FoldingType =
-  | "none"
-  | "half"
-  | "letter"
-  | "accordion";
+ | "none"
+ | "half-fold"
+ | "tri-fold"
+ | "z-fold"
+ | "gate-fold"
+ | "custom"
+ | "none";
 
 export type FinishingRuleContext = {
   paper: Paper;
+  productID: Product['productId'];
 };
 
 /**
@@ -31,7 +36,7 @@ export type FinishingRule = {
   /**
    * Whether this finishing is allowed at all.
    */
-  isAllowed: (ctx: FinishingRuleContext) => boolean;
+  isAllowed: (ctx: Partial<FinishingRuleContext>) => boolean;
 
   /**
    * Optional pricing multiplier hook.
@@ -65,8 +70,9 @@ export const foldingRule: FinishingRule = {
    * Folding is only allowed for lighter papers.
    * Heavy stock cracks in real production.
    */
-  isAllowed: ({ paper }) => {
-    return paper.gsm <= 200;
+  isAllowed: ({ paper, productId }) => {
+    if (productId === "flyer") return false;
+    return paper?.gsm <= 200;
   },
 
   priceMultiplier: ({ paper }) => {
