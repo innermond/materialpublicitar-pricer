@@ -1,35 +1,20 @@
-import type { SizeUnit } from "./size";
-
-export type ProductSizeDefaults = {
-  name: string;
-  width: number;
-  height: number;
-  unit: SizeUnit;
-};
+import type { SizeValue, } from "./size";
+import type { FinishingValue } from "./finishing";
 
 export type ProductFinishingDefaults = {
-  lamination: {
-    enabled: boolean;
-    sides: "front" | "back" | "both";
-    type: "gloss" | "matt" | "soft-touch";
-  };
+  lamination: FinishingValue['lamination'];
 
-  folding: {
-    type: "none" | "half" | "letter" | "accordion";
-    folds: number;
-  };
+  folding: FinishingValue['folding'];
 
-  creasing: {
-    count: number;
-  };
+  creasing: FinishingValue['creasing'];
 };
 
 export type ProductDefaults = {
-  size: ProductSizeDefaults;
+  size: SizeValue;
 
   paperId: string;
 
-  printMode: "4/4" | "4/1" | "1/0";
+  printMode: "4/4" | "4/1" | "4/0" | "1/1" | "1/0";
 
   quantity: number;
 

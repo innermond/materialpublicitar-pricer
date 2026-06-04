@@ -1,11 +1,10 @@
 import type { SizeValue } from "../../types/size";
 import { SIZE_PRESETS, getPresetByName } from "../../data/presets";
-import  { PRODUCT_SIZE_RULES } from "../../data/productSizeRules";
 import { getProductSizeRule } from "../../data/productSizeRules";
-import type { Product } from "../../data/products";
+import type { Product } from "../../types/product";
 
 type Props = {
-  productKey: Product['id'];
+  productKey: Product['productId'];
   value: SizeValue | null;
   onSelect: (preset: SizeValue) => void;
 };

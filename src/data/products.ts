@@ -4,29 +4,32 @@ export const PRODUCTS: ProductsMap = {
   flyer: {
     productId: "flyer",
     name: "Flyer",
+
     defaults: {
       size: {
         name: "A6",
         width: 105,
         height: 148,
-        unit: "mm",
+        unit: 'mm',
       },
 
-      paperId: "170-gloss",
+      paperId: "130-silk",
 
       printMode: "4/4",
+
       quantity: 1000,
 
       finishing: {
         lamination: {
-          enabled: false,
+          type: "none",
           sides: "front",
-          type: "gloss",
         },
+
         folding: {
           type: "none",
           folds: 0,
         },
+
         creasing: {
           count: 0,
         },
@@ -37,29 +40,32 @@ export const PRODUCTS: ProductsMap = {
   brochure: {
     productId: "brochure",
     name: "Brochure",
+
     defaults: {
       size: {
         name: "A4",
         width: 210,
         height: 297,
-        unit: "mm",
+        unit: 'mm',
       },
 
       paperId: "170-silk",
 
       printMode: "4/4",
+
       quantity: 500,
 
       finishing: {
         lamination: {
-          enabled: true,
-          sides: "both",
           type: "matt",
+          sides: "front",
         },
+
         folding: {
-          type: "letter",
-          folds: 2,
+          type: "half-fold",
+          folds: 1,
         },
+
         creasing: {
           count: 0,
         },
@@ -70,29 +76,32 @@ export const PRODUCTS: ProductsMap = {
   businessCard: {
     productId: "businessCard",
     name: "Business Card",
+
     defaults: {
       size: {
-        name: "custom size",
+        name: "BC1",
         width: 90,
         height: 50,
-        unit: "mm",
+        unit: 'mm',
       },
 
       paperId: "350-softtouch",
 
-      printMode: "4/4",
+      printMode: "4/0",
+
       quantity: 500,
 
       finishing: {
         lamination: {
-          enabled: true,
+          type: "none",
           sides: "front",
-          type: "soft-touch",
         },
+
         folding: {
           type: "none",
           folds: 0,
         },
+
         creasing: {
           count: 0,
         },

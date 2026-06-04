@@ -4,7 +4,7 @@ export default function QuoteItemRow({
   onSelect,
   onDelete,
   price,
-}: any) {
+}) {
   return (
     <div
       className={`rounded border p-2 cursor-pointer ${

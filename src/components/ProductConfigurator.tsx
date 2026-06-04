@@ -3,29 +3,30 @@ import { v4 as uuid } from "uuid";
 import QuantitySelector from "./QuantitySelector";
 import SizeSelector from "./SizeSelector";
 import PaperSelector from "./PaperSelector";
-import { getPaperById } from "../data/papers";
-import type { Paper } from "../data/papers";
+import { getPaperById, type Paper } from "../data/papers";
+import type { QuoteItem } from "../types/quote";
+import FinishingSelector from "./FinishingSelector/FinishingSelector";
 
-export default function ProductConfigurator({ store }: any) {
+export default function ProductConfigurator({ store }) {
   const active = store.activeItem;
 
+  const paper = getPaperById(active?.paperId);
   const productKeys = Object.keys(PRODUCTS);
-
-  const productPaper: Paper = getPaperById(active?.productId);
 
   const applyDefaults = (key: string) => {
     const p = PRODUCTS[key as keyof typeof PRODUCTS];
 
-    const newItem = {
+    const newItem: QuoteItem = {
       id: uuid(),
-      product: p.name,
       ...p.defaults,
+      productId: p.productId,
+      size: p.defaults.size,
     };
 
     store.addItem(newItem);
   };
 
-  const updateActive = (patch: any) => {
+  const updateActive = (patch: Partial<QuoteItem>) => {
     if (!active) return;
     console.log(patch)
     store.updateItem(active.id, patch);
@@ -43,7 +44,15 @@ export default function ProductConfigurator({ store }: any) {
             <button
               key={k}
               onClick={() => applyDefaults(k)}
-              className="rounded border px-3 py-1 hover:bg-blue-50"
+              className={`
+                rounded border px-3 py-1 transition
+
+                ${
+                  k === active?.productId
+                    ? "bg-blue-600 text-white border-blue-600"
+                    : "bg-white border-slate-300 hover:bg-blue-50"
+                }
+              `}
             >
               {PRODUCTS[k as keyof typeof PRODUCTS].name}
             </button>
@@ -56,11 +65,11 @@ export default function ProductConfigurator({ store }: any) {
         <div className="rounded-xl bg-white p-4 shadow space-y-3">
 
           <h2 className="font-semibold">
-            Editing: {active.product}
+            Editing: {active.productId}
           </h2>
 
           <SizeSelector
-            productKey={active.product}
+            productKey={active.productId}
             value={active.size}
             onChange={(val) =>
               updateActive({ size: val })
@@ -75,13 +84,20 @@ export default function ProductConfigurator({ store }: any) {
           />
 
           <PaperSelector
-            productKey={active.product}
+            productKey={active.productId}
             value={active.paperId}
-            onChange={(val: Paper) =>
+            onChange={(val: Paper['id']) =>
               updateActive({ paperId: val })
             }
           />
 
+          <FinishingSelector
+            paper={paper}
+            value={active.finishing}
+            onChange={(finishing) =>
+              updateActive({ finishing })
+            }
+          />
         </div>
       )}
 

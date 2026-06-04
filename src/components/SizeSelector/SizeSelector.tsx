@@ -11,6 +11,7 @@ import type {
   SizeValue,
   SizeUnit,
 } from "../../types/size";
+import type {Product} from "../../types/product";
 
 /**
  * Small tolerance to avoid floating point / conversion drift issues.
@@ -44,16 +45,8 @@ function findMatchingPreset(
 }
 
 type Props = {
-  /**
-   * Canonical model:
-   * Everything is stored in millimeters.
-   * Preset is optional metadata ("A4", "A5", etc)
-   */
+  productKey: Product['productId'];
   value: SizeValue;
-
-  /**
-   * Always emits normalized mm-based values.
-   */
   onChange: (value: SizeValue) => void;
 };
 

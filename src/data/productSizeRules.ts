@@ -1,3 +1,6 @@
+import type { ProductSizeRule } from "../data/products";
+import type { Product } from "../types/product";
+
 export const PRODUCT_SIZE_RULES: ProductSizeRule[] = [
   {
     productKey: "flyer",
@@ -35,23 +38,19 @@ export const PRODUCT_SIZE_RULES: ProductSizeRule[] = [
 
     minHeightMm: 210,
     maxHeightMm: 594,
-
-    allowedRatios: [
-      { width: 1, height: 1.414 }, // A-series ratio
-    ],
   },
 
   {
     productKey: "businessCard",
 
     defaultSize: {
-      name: "custom size",
+      name: "BC1",
       width: 90,
       height: 50,
       unit: "mm",
     },
 
-    allowedPresets: [],
+    allowedPresets: ["BC1", "BC2"],
 
     minWidthMm: 85,
     maxWidthMm: 100,
@@ -61,7 +60,7 @@ export const PRODUCT_SIZE_RULES: ProductSizeRule[] = [
   },
 ];
 
-export function getProductSizeRule(productKey: string) {
+export function getProductSizeRule(productKey: Product['productId']) {
   return PRODUCT_SIZE_RULES.find(
     (r) => r.productKey === productKey
   );

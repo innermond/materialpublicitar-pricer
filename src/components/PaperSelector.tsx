@@ -3,14 +3,14 @@ import type { Paper } from "../data/papers";
 import { getPaperById } from "../data/papers";
 import { getPaperRule } from "../data/productPaperRules";
 import type { ProductPaperRule } from "../data/productPaperRules";
-import type { Product } from "../data/products";
+import type { Product } from "../types/product";
 
 /**
  * PaperSelector is product-aware:
  * It only shows paper options valid for the currently active product.
  */
 type Props = {
-  productKey: Product['id'];
+  productKey: Product['productId'];
   value: string;
   onChange: (value: Paper['id']) => void;
 };
@@ -21,7 +21,7 @@ export default function PaperSelector({
   onChange,
 }: Props) {
   //TODO make it as it should
-  const product = PRODUCTS[productKey.toLowerCase() as keyof typeof PRODUCTS];
+  const product = PRODUCTS[productKey as keyof typeof PRODUCTS];
 
   /**
    * Defensive fallback:

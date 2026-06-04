@@ -1,14 +1,15 @@
 import QuoteItemRow from "./QuoteItemRow";
 import { calculateItemPrice } from "../pricing/engine";
+import type { QuoteItem } from "../types/quote";
 
-export default function QuoteCart({ store, total }: any) {
+export default function QuoteCart({ store, total }) {
   return (
     <div className="rounded-xl bg-white p-4 shadow">
 
       <h2 className="mb-3 font-semibold">Quote</h2>
 
       <div className="space-y-2">
-        {store.items.map((item: any) => (
+        {store.items.map((item: QuoteItem) => (
           <QuoteItemRow
             key={item.id}
             item={item}

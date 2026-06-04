@@ -1,34 +1,16 @@
 import type { Paper } from "../data/papers";
-"
-export type Lamination = {
-  enabled: boolean;
-  sides: "front" | "back" | "both";
-  type: "gloss" | "matt" | "soft-touch";
-};
-
-export type Folding = {
-  type: "none" | "half" | "letter" | "z" | "gate";
-  folds: number;
-};
-
-export type Creasing = {
-  count: number;
-};
-
-export type Finishing = {
-  lamination: Lamination;
-  folding: Folding;
-  creasing: Creasing;
-};
+import type { Product } from "../types/product";
+import type {FinishingValue} from "./finishing";
+import type { SizeValue, } from "./size";
 
 export type QuoteItem = {
   id: string;
 
-  product: string;
-  size: string;
+  productId: Product['productId'];
+  size: SizeValue;
   paperId: Paper['id'];
   printMode: string;
   quantity: number;
 
-  finishing: Finishing;
+  finishing: FinishingValue;
 };

@@ -1,4 +1,4 @@
-import { Paper } from "./papers";
+import type { Paper } from "./papers";
 
 /**
  * Core finishing types supported by the system.
@@ -19,9 +19,6 @@ export type FoldingType =
 
 export type FinishingRuleContext = {
   paper: Paper;
-  quantity: number;
-  widthMm: number;
-  heightMm: number;
 };
 
 /**
@@ -51,7 +48,7 @@ export const laminationRule: FinishingRule = {
    * (they deform / bubble in real production)
    */
   isAllowed: ({ paper }) => {
-    return paper.gsm >= 130;
+    return paper.gsm > 130;
   },
 
   priceMultiplier: ({ paper }) => {
